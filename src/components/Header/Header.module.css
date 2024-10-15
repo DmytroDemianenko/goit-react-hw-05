@@ -1,0 +1,9 @@
+.text {
+  color: black;
+  padding: 10px;
+  margin-right: 10px;
+}
+.wrapper {
+  display: flex;
+  justify-content: start;
+}
