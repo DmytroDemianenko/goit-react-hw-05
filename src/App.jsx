@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import Header from "./components/Header/Header";
+import Navigation from "./components/Navigation/Navigation";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
@@ -17,7 +17,7 @@ const MovieReviews = lazy(() =>
 function App() {
   return (
     <>
-      <Header />
+      <Navigation />
       <Suspense>
         <Routes>
           <Route path="/" element={<HomePage />} />

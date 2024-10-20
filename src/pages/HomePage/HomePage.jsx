@@ -8,6 +8,9 @@ const HomePage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!movies) {
+      return "Loading...";
+    }
     const getTrendingMovies = async () => {
       setIsLoading(true);
       setError(null);
@@ -23,9 +26,7 @@ const HomePage = () => {
 
     getTrendingMovies();
   }, []);
-  if (!movies) {
-    return "Loading...";
-  }
+
   return (
     <div>
       <h2>Trending today</h2>
