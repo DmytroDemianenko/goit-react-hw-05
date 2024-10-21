@@ -28,7 +28,6 @@ const MoviesPage = () => {
   }, [query]);
   return (
     <div>
-      <h2>Movies: </h2>
       <SearchBar query={searchParams} />
       {movies.length > 0 && <MovieList movies={movies} />}
     </div>

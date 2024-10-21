@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-
+import s from "./SearchBar.module.css";
 const SearchBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const handleSubmit = (e) => {
@@ -11,10 +11,19 @@ const SearchBar = () => {
     form.reset();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="query" />
-      <button type="submit">Search</button>
-    </form>
+    <div className={s.wrapper}>
+      <form onSubmit={handleSubmit}>
+        <input
+          className={s.inputArea}
+          type="text"
+          name="query"
+          placeholder="Please, enter searching title"
+        />
+        <button className={s.btn} type="submit">
+          Search
+        </button>
+      </form>
+    </div>
   );
 };
 

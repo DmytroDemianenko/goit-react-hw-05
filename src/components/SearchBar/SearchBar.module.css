@@ -1,0 +1,13 @@
+.btn {
+  padding: 0 5px 0 5px;
+  letter-spacing: normal;
+  background-color: #c8c6c6;
+  color: rgb(45, 43, 43);
+  font-weight: 500;
+}
+.wrapper {
+  text-align: left;
+}
+.inputArea {
+  background-color: #c8c6c6;
+}

@@ -6,4 +6,5 @@
 .wrapper {
   display: flex;
   justify-content: start;
+  width: 100%;
 }

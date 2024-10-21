@@ -7,6 +7,8 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
+import s from "./MovieDetailsPage.module.css";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState([]);
@@ -41,17 +43,33 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <Link to={backLinkHref}>Go back</Link>
-      {movie && <img src={movie.poster} alt={movie.title} />}
-      <h3> {movie.title}</h3>
-      <p>User Score: {movie.popularity}</p>
-      <h3>Overview</h3>
-      <p>{movie.overview}</p>
-      {/* <h3>Genres: {movie.genres}</h3> */}
-      <h3>Additional information</h3>
-      <div>
-        <NavLink to="Cast">Cast</NavLink>
-        <NavLink to="Reviews">Reviews</NavLink>
+      <div className={s.wrapper}>
+        <div className={s.thumbImg}>
+          <Link className={s.goBack} to={backLinkHref}>
+            <IoIosArrowRoundBack />
+            Go back
+          </Link>
+          {movie && <img src={movie.poster} alt={movie.title} width={250} />}
+        </div>
+        <div className={s.thumbAbout}>
+          <h3> {movie.title}</h3>
+          <p>User Score: {movie.popularity}</p>
+          <h3>Overview</h3>
+          <p>{movie.overview}</p>
+          <ul>
+            <h3>Genres</h3>
+            {movie.genres?.map((genre) => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className={s.thumbAdditional}>
+        <h3>Additional information</h3>
+        <div className={s.thumbAdditional}>
+          <NavLink to="Cast">Cast</NavLink>
+          <NavLink to="Reviews">Reviews</NavLink>
+        </div>
       </div>
       <Outlet />
     </>

@@ -37,6 +37,7 @@ const MovieCast = () => {
               <img
                 src={profile_path ? baseUrl + profile_path : null}
                 alt={name}
+                width={150}
               />
               <p>{name}</p>
               <p>Character: {character}</p>
