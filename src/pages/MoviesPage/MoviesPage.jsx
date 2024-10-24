@@ -6,15 +6,20 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("query") ?? "";
+
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const query = searchParams.get("query") ?? "";
+    if (!query) {
+      return;
+    }
     const getTrendingMovies = async () => {
       setIsLoading(true);
       setError(null);
+
       try {
         const data = await fetchSearchMovie(query);
         setMovies(data);
@@ -25,10 +30,13 @@ const MoviesPage = () => {
       }
     };
     getTrendingMovies();
-  }, [query]);
+  }, [searchParams]);
+  const handleChangeQuery = (query) => {
+    setSearchParams({ query });
+  };
   return (
     <div>
-      <SearchBar query={searchParams} />
+      <SearchBar handleChangeQuery={handleChangeQuery} />
       {movies.length > 0 && <MovieList movies={movies} />}
     </div>
   );

@@ -1,13 +1,14 @@
-import { useSearchParams } from "react-router-dom";
+import React from "react";
 import s from "./SearchBar.module.css";
-const SearchBar = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const { query } = form.elements;
-    setSearchParams({ query: query.value });
-
+const SearchBar = ({ handleChangeQuery }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const topic = form.elements.input.value.trim();
+    if (topic === "") {
+      return;
+    }
+    handleChangeQuery(topic);
     form.reset();
   };
   return (
@@ -16,7 +17,9 @@ const SearchBar = () => {
         <input
           className={s.inputArea}
           type="text"
-          name="query"
+          name="input"
+          autoComplete="off"
+          autoFocus
           placeholder="Please, enter searching title"
         />
         <button className={s.btn} type="submit">

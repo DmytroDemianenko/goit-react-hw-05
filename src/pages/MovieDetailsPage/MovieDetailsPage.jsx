@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { fetchMovie } from "../../services/api";
 import {
   Link,
@@ -18,7 +18,7 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   const location = useLocation();
-  const backLinkHref = location.state ?? "/";
+  const backLinkHref = useRef(location.state ?? "/movies");
   useEffect(() => {
     const getMovieById = async () => {
       setIsLoading(true);
@@ -45,7 +45,7 @@ const MovieDetailsPage = () => {
     <>
       <div className={s.wrapper}>
         <div className={s.thumbImg}>
-          <Link className={s.goBack} to={backLinkHref}>
+          <Link className={s.goBack} to={backLinkHref.current}>
             <IoIosArrowRoundBack />
             Go back
           </Link>
